@@ -35,11 +35,27 @@ window.addEventListener('scroll', handleNavbarScroll, { passive: true });
 // ============================================================
 // 2. HAMBURGER MENU
 // ============================================================
-hamburgerBtn.addEventListener('click', () => {
-  const isOpen = hamburgerBtn.classList.toggle('active');
-  navLinks.classList.toggle('open', isOpen);
-  hamburgerBtn.setAttribute('aria-expanded', isOpen);
-});
+const navMoreBtn = document.getElementById('nav-more-btn');
+
+if (hamburgerBtn && navLinks) {
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburgerBtn.classList.toggle('active');
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+  });
+}
+
+if (navMoreBtn && navLinks) {
+  navMoreBtn.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navMoreBtn.classList.toggle('active');
+    const icon = navMoreBtn.querySelector('i');
+    if (icon) {
+      icon.classList.toggle('fa-chevron-down');
+      icon.classList.toggle('fa-chevron-up');
+    }
+  });
+}
 
 // Close mobile menu when a nav link is clicked
 navLinks.querySelectorAll('a').forEach(link => {
